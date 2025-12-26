@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Security Gateway</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>API Security Gateway</h1>
+    <p class="subtitle">ML-based API endpoint security analysis</p>
+
+    <form method="POST">
+        <input
+            type="text"
+            name="url"
+            placeholder="Enter API endpoint URL"
+            value="{{ url }}"
+            required
+        >
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box fade-in">
+        <h2>{{ result }}</h2>
+
+        <h3>Explanation</h3>
+        <ul>
+            {% for e in explanation %}
+            <li>{{ e }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Prevention</h3>
+        <ul>
+            {% for p in prevention %}
+            <li>{{ p }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
